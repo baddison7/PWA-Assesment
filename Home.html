@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robot App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #1f1f1f;
+      color: white;
+      display: flex;
+    }
+
+    #sidebar {
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding: 24px 0;
+      width: 310px;
+      background-color: #181818;
+      height: 100vh;
+      padding-top: 20px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      transition: transform 0.3s ease;
+      border: #2b2b2b 1px solid;
+    }
+
+    #sidebar.closed {
+      transform: translateX(-235px);
+    }
+
+    #sidebar a {
+      display: block;
+      color: white;
+
+      padding: 15px 20px;
+      text-decoration: none;
+      font-size: 20px;
+    }
+
+    #sidebar a:hover {
+      background-color: #3e3e3e;
+    }
+
+    #content {
+      margin-left: 310px;
+      padding: 40px;
+      width: 100%;
+      transition: margin-left 0.3s ease;
+    }
+
+    #sidebar.closed + #content {
+      margin-left: 75px;
+    }
+
+    #footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding: 11.5px 0;
+      background-color: #181818;
+      border: #2b2b2b 1px solid;
+    }
+  </style>
+</head>
+<body>
+  <div id="sidebar">
+    <div id="top_buttons">
+      <a href="#">Pack List</a>
+      <a href="#">Robot Checklist</a>
+      <a href="#">Battery Manager</a>
+    </div>
+    <div style="margin-top: auto;">
+      <a href="#">Home</a>
+      <a href="#">Profile</a>
+      <a href="#">Settings</a>
+    </div>
+  </div>
+
+  <div id="content">
+    <h1>Welcome</h1>
+    <p>This is your home page. Add your components here.</p>
+  </div>
+
+  <div id="footer">
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('content');
+
+    sidebar.onclick = () => {
+      sidebar.classList.toggle('closed');
+    };
+  </script>
+
+</body>
+</html>
+
