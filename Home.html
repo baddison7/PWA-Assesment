@@ -25,6 +25,7 @@
         </g>
       </svg>
     </a>
+    <input type="text" id="searchbar" placeholder="Search...">
   </div>
   <div id="sidebar">
     <a href="#">
@@ -106,7 +107,10 @@
     </div>
   </div>
 
-  <div id="tabsbar"></div>
+  <div id="tabsbar">
+    <a>hello</a>
+  </div>
+
   <div id="content">
     <h1>Welcome</h1>
     <p>This is your home page. Add your components here.</p>
@@ -115,11 +119,9 @@
   <div id="footer">
 
   <script>
-    const sidebar = document.getElementById('sidebar');
-    const content = document.getElementById('content');
-
     sidebar.onclick = () => {
       sidebar.classList.toggle('closed');
+      document.body.classList.toggle('sidebar-closed');
     };
   </script>
 
