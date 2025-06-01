@@ -17,7 +17,6 @@ body {
     position: fixed;
     left: 0;
     top: 50px;
-    /* transition: transform 0.3s ease; */
     border: #2b2b2b 1px solid;
 }
 
@@ -27,7 +26,6 @@ body {
 
 #sidebar.closed svg {
     transform: translateX(235px);
-    /* transition: transform 0.3s ease; */
 }
 
 #sidebar a {
@@ -77,9 +75,10 @@ a:hover svg * {
     padding: 25px 30px;
 }
 
-#sidebar.closed + #content {
-    margin-left: 74px;
+body.sidebar-closed #content {
+  margin-left: 75px;
 }
+
 
 #sidebar.closed + #tabsbar {
     margin-left: 74px;
@@ -105,16 +104,51 @@ a:hover svg * {
     text-align: center;
     background-color: #1f1f1f;
     border: #2b2b2b 1px solid;
+    display: flex;
+    align-items: center;
+    right: 0;
+    z-index: 10;
+    padding-right: 15px;
+}
+
+#searchbar {
+    margin-left: auto;
+    margin-right: 15px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2b2b2b;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    width: 200px;
+    transition: width 0.3s ease;
+}
+
+#searchbar::placeholder {
+    color: #afafaf;
+}
+
+#searchbar:focus {
+    width: 250px;
+    background-color: #3a3a3a;
 }
 
 #tabsbar {
     position: fixed;
     width: 100%;
     text-align: center;
-    padding: 11.5px 0;
+    padding: 15px 0;
     background-color: #181818;
     border: #2b2b2b 1px solid;
     margin-left: 309px;
+    align-items: left
+}
+
+#tabsbar a {
+    border: #2b2b2b 1px solid;
+    background-color: #1f1f1f;
+
 }
 
 #backbutton{
