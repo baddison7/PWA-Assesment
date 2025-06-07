@@ -1,10 +1,4 @@
-body {
-    margin: 0;
-    font-family: sans-serif;
-    background-color: #1f1f1f;
-    color: white;
-    /* display: flex; */
-}
+/*-----SIDEBAR--------------------*/
 
 #sidebar {
     display: flex;
@@ -37,11 +31,21 @@ body {
     position: relative;
 }
 
-a svg * {
+#sidebar.closed svg.onpage {
+    border-left: #00ffff 2px solid;
+    left: -2px;
+}
+
+#sidebar:not(.closed) a.onpage {
+    border-left: #00ffff 2px solid;
+    left: -2px;
+}
+
+svg * {
     stroke: #AFAFAF;
 }
 
-a:hover svg * {
+svg:hover * {
     stroke: white;
 }
 
@@ -67,21 +71,23 @@ a:hover svg * {
     fill: white;
 }
 
+/*----- General --------------------*/
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #1f1f1f;
+    color: white;
+}
+
 #content {
     margin-left: 309px;
-    margin-top: 50px;
-    width: 100%;
-    transition: margin-left 0.1s ease;
+    margin-top: 100px;
     padding: 25px 30px;
 }
 
 body.sidebar-closed #content {
   margin-left: 75px;
-}
-
-
-#sidebar.closed + #tabsbar {
-    margin-left: 74px;
 }
 
 #footer {
@@ -115,8 +121,8 @@ body.sidebar-closed #content {
     margin-left: auto;
     margin-right: 15px;
     padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
+    border: #2b2b2b 1px solid;
+    border-radius: 4px;
     background-color: #2b2b2b;
     color: white;
     font-size: 16px;
@@ -130,25 +136,10 @@ body.sidebar-closed #content {
 }
 
 #searchbar:focus {
-    width: 250px;
-    background-color: #3a3a3a;
-}
-
-#tabsbar {
-    position: fixed;
-    width: 100%;
-    text-align: center;
-    padding: 15px 0;
-    background-color: #181818;
-    border: #2b2b2b 1px solid;
-    margin-left: 309px;
-    align-items: left
-}
-
-#tabsbar a {
-    border: #2b2b2b 1px solid;
-    background-color: #1f1f1f;
-
+    /* width: 250px;
+    background-color: #3a3a3a; */
+    outline: none;
+    border: 1px solid #00ffff; /* cyan highlight for focus*/
 }
 
 #backbutton{
@@ -162,3 +153,99 @@ body.sidebar-closed #content {
     left: 39px;
     top: 1px;
 }
+
+/*----- Tabs Bar --------------------*/
+#tabsbar {
+    position: fixed;
+    background-color: #181818;
+    border: #2b2b2b 1px solid;
+    border-left: none;
+    top: 50px;
+    right: 0px;
+    left: 310px;
+    height: 50px;
+    display: flex;
+    align-items: flex-start;
+}
+
+body.sidebar-closed #tabsbar {
+  left: 75px;
+}
+
+#tabsbar a {
+    width: fit-content;
+    display: inline-block;
+}
+
+#tabsbar a.active {
+    border-right: #2b2b2b 1px solid;
+    border-top: #00ffff 2px solid;
+    background-color: #1f1f1f;
+    padding: 14px 10px 16.5px 15px;
+}
+
+#tabsbar a:not(.active) {
+    border-right: #2b2b2b 1px solid;
+    padding: 16px 10px 16px 15px;
+}
+
+/*-----LOGIN PAGE--------------------*/
+.login-container {
+    width: 350px;
+    margin-right: 515px;
+    margin-left: auto;
+    margin-top: 50px;
+}
+
+.login-container h2 {
+    margin-bottom: 30px;
+    color: #AFAFAF;
+    font-weight: normal;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #AFAFAF;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 320px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #2b2b2b;
+    border-radius: 4px;
+    background-color: #181818;
+    color: #AFAFAF;
+    font-size: 14px;
+}
+
+.login-container input:focus {
+    outline: none;
+    border-color: #00ffff; /* cyan highlight for focus*/
+}
+
+.forgot-password {
+    color: #AFAFAF;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: #00ffff;
+}
+
+/*----- Packlist --------------------*/
+
+/* .container  */
+
+/* make text white and the rest grey, indent the rest make an add conainer button, make editable, make free floating items, make pages*/
+
+/* checklist, editabe, pages, checkable */
+/* battery, good luck */
+/* settings, idk random stuff */
+/* python, make it an actual PWA, cache, save and upload files(might need the ... to save in the corner) */
+/* footer, idk copy vscode */
