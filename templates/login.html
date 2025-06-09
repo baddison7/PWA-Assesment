@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block styles %}
+  <style>
+    .login-container {
+        width: 350px;
+        margin-right: 515px;
+        margin-left: auto;
+        margin-top: 50px;
+    }
+
+    .login-container h2 {
+        margin-bottom: 30px;
+        color: #AFAFAF;
+        font-weight: normal;
+    }
+
+    .login-container label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: #AFAFAF;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+        width: 320px;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #2b2b2b;
+        border-radius: 4px;
+        background-color: #181818;
+        color: #AFAFAF;
+        font-size: 14px;
+    }
+
+    .login-container input:focus {
+        outline: none;
+        border-color: #00ffff; /* cyan highlight for focus*/
+    }
+
+    .forgot-password {
+        color: #AFAFAF;
+        font-size: 13px;
+        text-decoration: none;
+    }
+
+    .forgot-password:hover {
+        text-decoration: underline;
+        color: #00ffff;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+      <h2>Login</h2>
+      <form>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </form>
+    </div>
+{% endblock %}

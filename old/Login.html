@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="main.css">
 </head>
 <body class="sidebar-closed">
-
   <div id="topbar">
     <a id="backbutton" href="">
       <svg id="Back_Button" data-name="Back Button" xmlns="http://www.w3.org/2000/svg" width="37" height="48" viewBox="0 0 37 48">
@@ -15,6 +14,7 @@
         <line id="Line_22" data-name="Line 22" x2="8" y2="8" transform="translate(6 24)" fill="none" stroke="#afafaf" stroke-linecap="round" stroke-width="2"/>
         <line id="Line_23" data-name="Line 23" y1="8" x2="8" transform="translate(6 16)" fill="none" stroke="#afafaf" stroke-linecap="round" stroke-width="2"/>
       </svg>
+
     </a>
     <a id="forwardbutton" href="">
       <svg xmlns="http://www.w3.org/2000/svg" width="37" height="48" viewBox="0 0 37 48">
@@ -27,11 +27,9 @@
     </a>
     <input type="text" id="searchbar" placeholder="Search...">
   </div>
-
-
   <div id="sidebar" class="closed">
-    <a class="onpage" href="Pack_List.html">
-      <svg id="Pack_List" class="onpage" data-name="Pack List" xmlns="http://www.w3.org/2000/svg" width="73" height="75" viewBox="0 0 73 75">
+    <a href="Pack_List.html">
+      <svg id="Pack_List" data-name="Pack List" xmlns="http://www.w3.org/2000/svg" width="73" height="75" viewBox="0 0 73 75">
         <g id="Rectangle_79" data-name="Rectangle 79" transform="translate(12 24)" stroke-width="2" fill="#181818">
           <rect width="50" height="35" rx="7" stroke="none"/>
           <rect x="1" y="1" width="48" height="33" rx="6" fill="none"/>
@@ -91,8 +89,8 @@
           <line id="Line_33" data-name="Line 33" x1="30" y1="22" transform="translate(36.5 13.125)" fill="none" stroke-linecap="round" stroke-width="3"/>
         </svg>
       Home</a>
-      <a href="Login.html">
-        <svg id="Profile" xmlns="http://www.w3.org/2000/svg" width="73" height="75" viewBox="0 0 73 75">
+      <a href="Login.html" class="onpage">
+        <svg id="Profile" class="onpage" xmlns="http://www.w3.org/2000/svg" width="73" height="75" viewBox="0 0 73 75">
           <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(11.5 12.5)" fill="none" stroke-width="2">
             <circle cx="25" cy="25" r="25" stroke="none"/>
             <circle cx="25" cy="25" r="24" fill="none"/>
@@ -112,28 +110,33 @@
     </div>
   </div>
 
-
   <div id="tabsbar">
-    <a class="active">Pack List    
+    <a class="active" >Login
       <svg style="margin-left: 5px;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15.414 15.414">
           <line id="Line_25" data-name="Line 25" y1="14" x2="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
           <line id="Line_26" data-name="Line 26" x1="14" y1="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
       </svg>
     </a>
+    <a>hi    
+      <svg style="margin-left: 5px;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15.414 15.414">
+          <line id="Line_25" data-name="Line 25" y1="14" x2="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
+          <line id="Line_26" data-name="Line 26" x1="14" y1="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
+      </svg>
+</a>
   </div>
 
-  <div id="content">
-    <div id="page 1">
-      <div class="pack-list-item">
-        <div class="pack-list-item-name">Pack 1</div>
-        <div class="pack-list-item-description">Description of Pack 1</div>
-        <div class="pack-list-item-status">Status: Active</div>
-      </div>
-      <div class="pack-list-item">
-        <div class="pack-list-item-name">Pack 2</div>
-        <div class="pack-list-item-description">Description of Pack 2</div>
-        <div class="pack-list-item-status">Status: Inactive</div>
-      </div>
+  <div id="content" style="padding: 25px 30px;">
+    <div class="login-container">
+      <h2>Login</h2>
+      <form>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </form>
     </div>
   </div>
 

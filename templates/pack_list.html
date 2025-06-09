@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<style>
+    #packlist {
+        width: 100%;
+        display: flex;
+        padding: 25px 30px;
+    }
+
+    .editor {
+    width: 95%;
+    color: white;
+    font-family: 'Georgia', serif;
+    outline: none;
+    padding: 5px 0px 5px 10px;
+    margin-right: 10px;
+    background-color: #2b2b2b;
+    }
+
+    .page {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: calc(100vh - 150px);
+    overflow-y: auto;
+    padding-bottom: 50px;
+    overflow-y: auto;
+    }
+
+    #add_container_button {
+    width: fit-content;
+    margin-top: auto;
+    background-color: #2b2b2b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+    position: fixed;
+    bottom: 25px;
+    
+    }
+    #add_container_name {
+        margin-top: auto;
+        padding: 6px; 
+        background-color: #2b2b2b; 
+        color: white; 
+        border: 1px solid #444; 
+        border-radius: 4px;
+        outline: none;
+        /* width: auto; */
+        min-width: 250px;
+        position: fixed;
+        bottom: 25px;
+        margin-left: 122px;
+    }
+
+    .container-name {
+        margin: 10px 0 5px 0;
+        font-weight: bold;
+        color: #f0f0f0;
+        display: inline;
+    }
+
+    .packed-button {
+        background-color: #2b2b2b;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 5px 10px;
+        margin-bottom: 10px;
+        display: inline;
+        margin-left: 5px;
+    }
+
+    .editor-container {
+        margin-bottom: 15px;
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="packlist">
+    <div id="page_1" class="page">
+        <button id="add_container_button">Add Container</button>
+        <input type="text" id="add_container_name" placeholder="Enter name..."> 
+    </div>
+    
+    <div id="page 2" class="page">
+    <div class="editor" contenteditable="true">
+        Start typing here...
+    </div>
+    
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const addButton = document.getElementById('add_container_button');
+    const inputField = document.getElementById('add_container_name');
+    const pageOne = document.getElementById('page_1');
+
+    addButton.onclick = () => {
+        const name = inputField.value.trim();
+        if (name === "") return;
+
+        // Create wrapper div
+        const container = document.createElement('div');
+        container.className = 'editor-container';
+        // container.style.marginBottom = '15px';
+
+        // Add name as <p>
+        const namePara = document.createElement('p');
+        namePara.textContent = name;
+        // namePara.style.margin = '0 0 5px 0';
+        namePara.className = 'container-name';
+        container.appendChild(namePara);
+
+        const packedButton = document.createElement('button');
+        packedButton.textContent = 'Packed';
+        packedButton.className = 'packed-button';
+        packedButton.onclick = () => {
+            console.log(`Packed: ${name}`);
+        };
+        container.appendChild(packedButton);
+
+        // Add editable div
+        const editor = document.createElement('div');
+        editor.contentEditable = true;
+        editor.className = 'editor';
+        container.appendChild(editor);
+
+        // Insert the container above the input/button
+        pageOne.insertBefore(container, addButton);
+
+        // Clear the input field
+        inputField.value = "";
+    };
+</script>
+{% endblock %}

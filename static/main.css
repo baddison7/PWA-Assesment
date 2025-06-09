@@ -31,7 +31,7 @@
     position: relative;
 }
 
-#sidebar.closed svg.onpage {
+#sidebar.closed a.onpage * {
     border-left: #00ffff 2px solid;
     left: -2px;
 }
@@ -83,7 +83,8 @@ body {
 #content {
     margin-left: 309px;
     margin-top: 100px;
-    padding: 25px 30px;
+    /* padding: 25px 30px; */
+    display: flex
 }
 
 body.sidebar-closed #content {
@@ -175,6 +176,7 @@ body.sidebar-closed #tabsbar {
 #tabsbar a {
     width: fit-content;
     display: inline-block;
+    text-decoration: none;
 }
 
 #tabsbar a.active {
@@ -182,63 +184,14 @@ body.sidebar-closed #tabsbar {
     border-top: #00ffff 2px solid;
     background-color: #1f1f1f;
     padding: 14px 10px 16.5px 15px;
+    color: white;
 }
 
 #tabsbar a:not(.active) {
     border-right: #2b2b2b 1px solid;
     padding: 16px 10px 16px 15px;
-}
-
-/*-----LOGIN PAGE--------------------*/
-.login-container {
-    width: 350px;
-    margin-right: 515px;
-    margin-left: auto;
-    margin-top: 50px;
-}
-
-.login-container h2 {
-    margin-bottom: 30px;
-    color: #AFAFAF;
-    font-weight: normal;
-}
-
-.login-container label {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 14px;
     color: #AFAFAF;
 }
-
-.login-container input[type="text"],
-.login-container input[type="password"] {
-    width: 320px;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #2b2b2b;
-    border-radius: 4px;
-    background-color: #181818;
-    color: #AFAFAF;
-    font-size: 14px;
-}
-
-.login-container input:focus {
-    outline: none;
-    border-color: #00ffff; /* cyan highlight for focus*/
-}
-
-.forgot-password {
-    color: #AFAFAF;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-.forgot-password:hover {
-    text-decoration: underline;
-    color: #00ffff;
-}
-
-/*----- Packlist --------------------*/
 
 /* .container  */
 
