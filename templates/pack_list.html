@@ -2,35 +2,52 @@
 
 {% block styles %}
 <style>
+    h1 {
+        margin: 0;
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+
     #packlist {
         width: 100%;
         display: flex;
-        padding: 25px 30px;
     }
 
     .editor {
     width: 95%;
     color: white;
-    font-family: 'Georgia', serif;
+    font-family: sans-serif;
     outline: none;
     padding: 5px 0px 5px 10px;
     margin-right: 10px;
-    background-color: #2b2b2b;
+    background-color: #181818;
+    overflow-y: auto;
     }
+
+    .editor:empty::before {
+    content: attr(data-placeholder);
+    color: #afafaf;
+    pointer-events: none;
+    }
+
 
     .page {
     display: flex;
     flex-direction: column;
     width: 50%;
     height: calc(100vh - 150px);
-    overflow-y: auto;
     padding-bottom: 50px;
     overflow-y: auto;
+    padding-top: 20px;
+    padding-left: 30px;
+    }
+
+    #page_2 {
+        border-left: 1px solid #2b2b2b;
     }
 
     #add_container_button {
     width: fit-content;
-    margin-top: auto;
     background-color: #2b2b2b;
     color: white;
     border: none;
@@ -38,23 +55,25 @@
     cursor: pointer;
     font-size: 16px;
     padding: 5px 10px;
-    position: fixed;
-    bottom: 25px;
     
     }
     #add_container_name {
-        margin-top: auto;
-        padding: 6px; 
-        background-color: #2b2b2b; 
-        color: white; 
-        border: 1px solid #444; 
+        padding: 5px;
+        background-color: #2b2b2b;
+        color: white;
+        border: 1px solid #2b2b2b;
         border-radius: 4px;
         outline: none;
-        /* width: auto; */
         min-width: 250px;
-        position: fixed;
-        bottom: 25px;
-        margin-left: 122px;
+    }
+
+    #add_container_name:focus {
+        border-color: #00ffff;
+    }
+
+    #add_container_div {
+        width: 100vh;
+        padding-bottom: 25px;
     }
 
     .container-name {
@@ -79,6 +98,10 @@
     .editor-container {
         margin-bottom: 15px;
     }
+
+    body {
+        overflow: hidden;
+    }
     
 </style>
 {% endblock %}
@@ -86,13 +109,16 @@
 {% block content %}
 <div id="packlist">
     <div id="page_1" class="page">
+        <h1>Pack List</h1>
+        <div id="add_container_div">
         <button id="add_container_button">Add Container</button>
         <input type="text" id="add_container_name" placeholder="Enter name..."> 
+        <button id="save_button" class="packed-button">Save All</button>
+        </div>
     </div>
     
-    <div id="page 2" class="page">
-    <div class="editor" contenteditable="true">
-        Start typing here...
+    <div id="page_2" class="page">
+        <h1>Packed list</h1>
     </div>
     
     </div>
@@ -103,43 +129,79 @@
 <script>
     const addButton = document.getElementById('add_container_button');
     const inputField = document.getElementById('add_container_name');
+    const addContainerDiv = document.getElementById('add_container_div');
     const pageOne = document.getElementById('page_1');
+    const pageTwo = document.getElementById('page_2');
 
     addButton.onclick = () => {
         const name = inputField.value.trim();
         if (name === "") return;
 
-        // Create wrapper div
         const container = document.createElement('div');
         container.className = 'editor-container';
-        // container.style.marginBottom = '15px';
 
-        // Add name as <p>
         const namePara = document.createElement('p');
         namePara.textContent = name;
-        // namePara.style.margin = '0 0 5px 0';
         namePara.className = 'container-name';
         container.appendChild(namePara);
 
         const packedButton = document.createElement('button');
-        packedButton.textContent = 'Packed';
+        packedButton.textContent = 'Pack';
         packedButton.className = 'packed-button';
         packedButton.onclick = () => {
-            console.log(`Packed: ${name}`);
+            if (container.parentElement === pageOne) {
+                pageTwo.appendChild(container);
+                packedButton.textContent = 'Unpack';
+                editor.contentEditable = false;
+                if (editor.innerText.trim() === "") {
+                    editor.setAttribute('data-placeholder', 'No items in this container');
+                }
+
+            } else {
+                pageOne.appendChild(container);
+                packedButton.textContent = 'Pack';
+                editor.contentEditable = true;
+                editor.setAttribute('data-placeholder', 'Type items here...');
+            }
         };
         container.appendChild(packedButton);
 
-        // Add editable div
         const editor = document.createElement('div');
         editor.contentEditable = true;
         editor.className = 'editor';
+        editor.setAttribute('data-placeholder', 'Type items here...');
         container.appendChild(editor);
-
-        // Insert the container above the input/button
-        pageOne.insertBefore(container, addButton);
-
-        // Clear the input field
+        pageOne.appendChild(container, addContainerDiv);
+        
         inputField.value = "";
+    };
+    
+    const saveButton = document.getElementById('save_button');
+    saveButton.onclick = () => {
+        const containers = document.querySelectorAll('.editor-container');
+        const dataToSave = [];
+
+        containers.forEach(container => {
+            const name = container.querySelector('.container-name').textContent;
+            const content = container.querySelector('.editor').innerText;
+            const location = container.parentElement.id === 'page_1' ? 'Unpacked' : 'Packed';
+            dataToSave.push(`${location} - ${name}:\n${content}\n`);
+        });
+
+        fetch("/save_pack_list", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ data: dataToSave })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Saved successfully!");
+            } else {
+                alert("Failed to save.");
+            }
+        });
     };
 </script>
 {% endblock %}

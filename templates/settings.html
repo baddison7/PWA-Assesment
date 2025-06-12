@@ -1,5 +1,115 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block styles %}
+<style>
+    #settings_container {
+        padding: 20px;
+    }
 
+</style>
+{% endblock %}
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block tabs %}
+    <a class="tab active" id="tab1" onclick="switchTab('tab1')">
+    Settings
+    <svg style="margin-left: 5px;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15.414 15.414" onclick="deleteTab('tab1')">
+        <line id="Line_25" data-name="Line 25" y1="14" x2="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
+        <line id="Line_26" data-name="Line 26" x1="14" y1="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
+    </svg>
+    </a>
+    <a class="tab" id="tab2" onclick="switchTab('tab2')">
+    Tab 2
+    <svg style="margin-left: 5px;" onclick="deleteTab('tab2')" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15.414 15.414">
+        <line id="Line_25" data-name="Line 25" y1="14" x2="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
+        <line id="Line_26" data-name="Line 26" x1="14" y1="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
+    </svg>
+    </a>
+{% endblock %}
+
+{% block content %}
+<div id="settings_container">
+    <div class="tab-content tab1" style="display: block;">
+        <h1>Settings</h1>
+        <p>Settings placeholder text</p>
+    </div>
+    <div class="tab-content tab2" style="display: none;">
+        <h1>Tab 2</h1>
+        <p>This is the content for Tab 2</p>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function switchTab(tabId) {
+  const tabContent = document.querySelectorAll('.tab-content');
+  tabContent.forEach(tab => tab.style.display = 'none');
+  const tab = document.querySelectorAll(".tab");
+  tab.forEach(tab => tab.className = 'tab');
+
+  const content = document.querySelectorAll('.'+tabId);
+  content.forEach(tab => tab.style.display = 'block');
+  const activeTab = document.getElementById(tabId);
+  if (activeTab) {
+    activeTab.className = 'tab active';
+  }
+}
+
+
+let tabCount = 3;
+
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(div => div.style.display = 'none');
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+
+  const targetContent = document.querySelector('.' + tabId);
+  if (targetContent) targetContent.style.display = 'block';
+
+  const targetTab = document.getElementById(tabId);
+  if (targetTab) targetTab.classList.add('active');
+}
+
+function addNewTab() {
+  const tabId = `tab${tabCount}`;
+  const tabBar = document.getElementById('tabsbar');
+
+  // Create tab button
+  const tab = document.createElement('a');
+  tab.className = 'tab';
+  tab.id = tabId;
+  tab.textContent = `Tab ${tabCount}`;
+  tab.innerHTML += `<svg style="margin-left: 5px;" onclick="deleteTab('${tab.id}')" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15.414 15.414">
+        <line id="Line_25" data-name="Line 25" y1="14" x2="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
+        <line id="Line_26" data-name="Line 26" x1="14" y1="14" transform="translate(0.5 0.5)" fill="none" stroke="#afafaf" stroke-width="2"/>
+    </svg>`;
+  tab.onclick = () => switchTab(tabId);
+  tabBar.insertBefore(tab, document.getElementById('new_tab'));
+
+  // Create content
+  const content = document.createElement('div');
+  content.className = `tab-content ${tabId}`;
+  content.style.display = 'none';
+  content.innerHTML = `<h1>Tab ${tabCount}</h1><p>This is a new tab.</p>`;
+
+  document.getElementById('settings_container').appendChild(content);
+  switchTab(tabId);
+
+  tabCount++;
+}
+
+function deleteTab(tabId) {
+  const targetContent = document.querySelector('.' + tabId);
+  if (targetContent) targetContent.style.display = 'none';
+
+  const targetTab = document.getElementById(tabId);
+  console.log(targetTab);
+  if (targetTab) {
+    targetTab.style.display = 'none';
+  }
+}
+
+</script>
 {% endblock %}

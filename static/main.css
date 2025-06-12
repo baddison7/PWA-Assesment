@@ -59,19 +59,17 @@ svg:hover * {
     stroke: white;
 }
 
-#sidebar a svg #little_shit {
+#sidebar a svg #stubborn_ones {
     fill: #AFAFAF;
 }
 
-#sidebar a:hover svg #little_shit {
+#sidebar a:hover svg #stubborn_ones {
     fill: white;
 }
 
-#sidebar:not(.closed) a svg #little_shit {
+#sidebar:not(.closed) a svg #stubborn_ones {
     fill: white;
 }
-
-/*----- General --------------------*/
 
 body {
     margin: 0;
@@ -83,7 +81,6 @@ body {
 #content {
     margin-left: 309px;
     margin-top: 100px;
-    /* padding: 25px 30px; */
     display: flex
 }
 
@@ -137,10 +134,8 @@ body.sidebar-closed #content {
 }
 
 #searchbar:focus {
-    /* width: 250px;
-    background-color: #3a3a3a; */
     outline: none;
-    border: 1px solid #00ffff; /* cyan highlight for focus*/
+    border: 1px solid #00ffff;
 }
 
 #backbutton{
@@ -155,7 +150,8 @@ body.sidebar-closed #content {
     top: 1px;
 }
 
-/*----- Tabs Bar --------------------*/
+
+
 #tabsbar {
     position: fixed;
     background-color: #181818;
@@ -193,12 +189,19 @@ body.sidebar-closed #tabsbar {
     color: #AFAFAF;
 }
 
-/* .container  */
-
-/* make text white and the rest grey, indent the rest make an add conainer button, make editable, make free floating items, make pages*/
-
-/* checklist, editabe, pages, checkable */
-/* battery, good luck */
-/* settings, idk random stuff */
-/* python, make it an actual PWA, cache, save and upload files(might need the ... to save in the corner) */
-/* footer, idk copy vscode */
+#new_tab {
+    padding-bottom: 13px;
+    padding-top: 14px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-right: #2b2b2b 1px solid;
+    color: #afafaf;
+    width: fit-content;
+    display: inline-block;
+    text-decoration: none;
+    background: none;
+    outline: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+}
